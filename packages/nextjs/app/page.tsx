@@ -3,7 +3,7 @@
 import Link from "next/link";
 import type { NextPage } from "next";
 import { useAccount } from "wagmi";
-import { BugAntIcon, MagnifyingGlassIcon } from "@heroicons/react/24/outline";
+import { BugAntIcon, MagnifyingGlassIcon, AcademicCapIcon } from "@heroicons/react/24/outline";
 import { Address } from "~~/components/scaffold-eth";
 
 const Home: NextPage = () => {
@@ -59,6 +59,16 @@ const Home: NextPage = () => {
                   Block Explorer
                 </Link>{" "}
                 tab.
+              </p>
+            </div>
+            <div className="flex flex-col bg-base-100 px-10 py-10 text-center items-center max-w-xs rounded-3xl">
+              <AcademicCapIcon className="h-8 w-8 fill-secondary" />
+              <p>
+                Create a basic character with this{" "}
+                <Link href="/QuizPage" passHref className="link">
+                  Character Quiz
+                </Link>{" "}
+                .
               </p>
             </div>
           </div>
