@@ -41,6 +41,8 @@ contract BuyMeACoffee {
     address payable public owner;
     uint256 public price;
     Memo[] public memos;
+    
+
 
     error InsufficientFunds();
     error InvalidArguments(string message);
