@@ -21,6 +21,7 @@ contract ArtistMarketPlace is ReentrancyGuard, VRFConsumerBaseV2Plus {
 	);
 	error ErrorIncompleteArtWorkDetails();
 	error ErrorArtistNotFound(address artistWallet);
+	error ErrorArtworkNotInTheSuppliedIndex();
 
 	enum ArtType {
 		AIGenerated,
@@ -55,7 +56,7 @@ contract ArtistMarketPlace is ReentrancyGuard, VRFConsumerBaseV2Plus {
 
 	mapping(uint256 => RequestStatus) public s_requests;
 	//artist address matched to artist commision held by the contract
-	mapping(address => uint256) s_artistCommision;
+	mapping(address => uint256) public s_artistCommision;
 	//mapping of address to Artist array index
 	mapping(address => uint) public s_artistIndex;
 	//artwork
@@ -156,11 +157,16 @@ contract ArtistMarketPlace is ReentrancyGuard, VRFConsumerBaseV2Plus {
 			s_artistCommision[msg.sender] = 0;
 			(bool success, ) = payable(msg.sender).call{ value: commision }("");
 			require(success, "commision withdrawal failed");
+		}else{
+			revert ErrorNoCommisionToWithdraw();
 		}
-		revert ErrorNoCommisionToWithdraw();
+		
 	}
 
 	function buyArtWork(uint256 artWorkIndex) public payable {
+		if ( artWorkIndex > s_artworks.length || s_artworks.length == 0 ){
+			revert ErrorArtworkNotInTheSuppliedIndex();
+		}
 		ArtWork memory artwork = s_artworks[artWorkIndex];
 		if (artwork.creator == address(0)) {
 			revert ErrorArtWorkNotFound();
@@ -174,6 +180,7 @@ contract ArtistMarketPlace is ReentrancyGuard, VRFConsumerBaseV2Plus {
 		//buy the art
 		s_artworks[artWorkIndex].owner = msg.sender;
 		s_artistCommision[artwork.creator] += msg.value;
+
 	}
 
 	function saveArtWorkDetails(
@@ -227,4 +234,6 @@ contract ArtistMarketPlace is ReentrancyGuard, VRFConsumerBaseV2Plus {
 			s_artist.length -
 			1;
 	}
+
+	receive() external payable {}
 }
