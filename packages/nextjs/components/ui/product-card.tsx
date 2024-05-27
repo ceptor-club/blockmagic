@@ -54,7 +54,7 @@ const ProductCard = ({
           className={`p-1 ${isFavourite ? "text-red-500" : "text-gray-500"} transition-colors`}
           aria-label="Add to favourite"
         >
-          <Heart className={`w-5 h-5 ${isFavourite ? "fill-current text-white" : "fill-none"}`} />
+          <Heart className={`w-5 h-5 ${isFavourite ? "fill-white text-white" : "fill-none"}`} />
         </button>
       </div>
       {/* text display */}
