@@ -107,7 +107,9 @@ export default function Home() {
           <Sort />
         </div>
         <div className="flex flex-col md:flex-row items-start">
-          <Filter />
+          <div className="hidden md:block">
+            <Filter />
+          </div>
           {/* Featured */}
           <div className="flex-1">
             <h1 className="font-milonga text-5xl my-8">Featured</h1>
@@ -131,25 +133,27 @@ export default function Home() {
           </div>
         </div>
         {/* Recommended Section */}
-        <div className="flex-1 ml-52">
-          <h1 className="font-milonga text-5xl my-8">Recommended</h1>
-          <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-x-5 gap-y-10">
-            {currentProducts.map(product => (
-              <ProductCard
-                key={product.artName}
-                href={`/${product.artName}`}
-                imgSrc={product.imgSrc}
-                imgAlt={product.imgAlt}
-                artist={product.artistName}
-                title={product.artName}
-                price={product.amount}
-                tags={product.tags}
-                isAI={true}
-                isFavourite={false}
-              />
-            ))}
+        <div>
+          <div className="flex-1 md:ml-52">
+            <h1 className="font-milonga text-5xl my-8">Recommended</h1>
+            <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-x-5 gap-y-10">
+              {currentProducts.map(product => (
+                <ProductCard
+                  key={product.artName}
+                  href={`/${product.artName}`}
+                  imgSrc={product.imgSrc}
+                  imgAlt={product.imgAlt}
+                  artist={product.artistName}
+                  title={product.artName}
+                  price={product.amount}
+                  tags={product.tags}
+                  isAI={true}
+                  isFavourite={false}
+                />
+              ))}
+            </div>
+            <Pagination currentPage={currentPage} totalPages={totalPages} onPageChange={handlePageChange} />
           </div>
-          <Pagination currentPage={currentPage} totalPages={totalPages} onPageChange={handlePageChange} />
         </div>
       </div>
     </main>

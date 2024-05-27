@@ -1,10 +1,11 @@
 "use client";
 
-import React, { useCallback, useRef, useState } from "react";
+import { useCallback, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import sunny from "../assets/sunny.svg";
+import Filter from "../ui/filter";
 import { Bars3Icon, BugAntIcon } from "@heroicons/react/24/outline";
 import {
   DappConsoleButton,
@@ -85,12 +86,13 @@ export const Header = () => {
           {isDrawerOpen && (
             <ul
               tabIndex={0}
-              className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
+              className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 w-52 max-h-80 overflow-y-auto block"
               onClick={() => {
                 setIsDrawerOpen(false);
               }}
             >
               <HeaderMenuLinks />
+              <Filter />
             </ul>
           )}
         </div>
