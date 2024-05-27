@@ -1,3 +1,4 @@
+import { Button } from "./button";
 import { Checkbox } from "./checkbox";
 // import { Input } from "./input";
 import { Label } from "./label";
@@ -5,7 +6,7 @@ import Search from "./search";
 
 export default function Filter() {
   return (
-    <div className="rounded-lg p-6 w-[197px] mr-3">
+    <div className="rounded-lg p-6 mr-5 w-auto">
       <div className="grid gap-4">
         {/* browse */}
         <div>
@@ -99,6 +100,15 @@ export default function Filter() {
             </Label>
           </div>
         </div>
+      </div>
+      {/* button */}
+      <div className="flex space-x-2 mt-10 flex-col md:flex-row gap-4 md:gap-0">
+        <Button variant="default" size={"lg"}>
+          Apply
+        </Button>
+        <Button variant="outline" size={"lg"}>
+          Clear Filters
+        </Button>
       </div>
     </div>
   );
