@@ -1,71 +1,157 @@
 "use client";
 
-import Link from "next/link";
-import type { NextPage } from "next";
-import { useAccount } from "wagmi";
-import { BugAntIcon, MagnifyingGlassIcon } from "@heroicons/react/24/outline";
-import { Address } from "~~/components/scaffold-eth";
+import { useState } from "react";
+import Filter from "../components/ui/filter";
+import ProductCard from "../components/ui/product-card";
+import Search from "../components/ui/search";
+import Sort from "../components/ui/sort";
+import Pagination from "~~/components/layout/Pagination";
 
-const Home: NextPage = () => {
-  const { address: connectedAddress } = useAccount();
+const products = [
+  {
+    artistName: "Takashi Murakami",
+    artName: "Flowers Blooming",
+    amount: "1 Token",
+    tags: ["Open for Commissions", "AI Generated", "Fantasy", "Wizard", "Dungeons & Dragons"],
+    imgSrc: "/ceptor.png",
+    imgAlt: "A vibrant floral artwork by Takashi Murakami",
+  },
+  {
+    artistName: "Beeple",
+    artName: "Everydays: The First 5000 Days",
+    amount: "1 Token",
+    tags: ["Open for Commissions", "AI Generated", "Fantasy", "Wizard", "Dungeons & Dragons"],
+    imgSrc: "/ceptor.png",
+    imgAlt: "A digital collage artwork by Beeple",
+  },
+  {
+    artistName: "Banksy",
+    artName: "Girl with Balloon",
+    amount: "1 Token",
+    tags: ["Open for Commissions", "AI Generated", "Fantasy", "Wizard", "Dungeons & Dragons"],
+    imgSrc: "/ceptor.png",
+    imgAlt: "A street art piece of a girl releasing a heart-shaped balloon by Banksy",
+  },
+  {
+    artistName: "Yayoi Kusama",
+    artName: "Infinity Nets",
+    amount: "1 Token",
+    tags: ["Open for Commissions", "AI Generated", "Fantasy", "Wizard", "Dungeons & Dragons"],
+    imgSrc: "/ceptor.png",
+    imgAlt: "An abstract artwork with polka dots by Yayoi Kusama",
+  },
+  {
+    artistName: "Andy Warhol",
+    artName: "Marilyn Diptych",
+    amount: "1 Token",
+    tags: ["Open for Commissions", "AI Generated", "Fantasy", "Wizard", "Dungeons & Dragons"],
+    imgSrc: "/ceptor.png",
+    imgAlt: "A pop art portrait of Marilyn Monroe by Andy Warhol",
+  },
+  {
+    artistName: "Andy Warhol",
+    artName: "Marilyn Diptych",
+    amount: "1 Token",
+    tags: ["Open for Commissions", "AI Generated", "Fantasy", "Wizard", "Dungeons & Dragons"],
+    imgSrc: "/ceptor.png",
+    imgAlt: "A pop art portrait of Marilyn Monroe by Andy Warhol",
+  },
+  {
+    artistName: "Yayoi Kusama",
+    artName: "Infinity Nets",
+    amount: "1 Token",
+    tags: ["Open for Commissions", "AI Generated", "Fantasy", "Wizard", "Dungeons & Dragons"],
+    imgSrc: "/ceptor.png",
+    imgAlt: "An abstract artwork with polka dots by Yayoi Kusama",
+  },
+  {
+    artistName: "Andy Warhol",
+    artName: "Marilyn Diptych",
+    amount: "1 Token",
+    tags: ["Open for Commissions", "AI Generated", "Fantasy", "Wizard", "Dungeons & Dragons"],
+    imgSrc: "/ceptor.png",
+    imgAlt: "A pop art portrait of Marilyn Monroe by Andy Warhol",
+  },
+  {
+    artistName: "Andy Warhol",
+    artName: "Marilyn Diptych",
+    amount: "1 Token",
+    tags: ["Open for Commissions", "AI Generated", "Fantasy", "Wizard", "Dungeons & Dragons"],
+    imgSrc: "/ceptor.png",
+    imgAlt: "A pop art portrait of Marilyn Monroe by Andy Warhol",
+  },
+];
+
+const ITEMS_PER_PAGE = 6;
+
+export default function Home() {
+  const [currentPage, setCurrentPage] = useState(1);
+
+  const indexOfLastItem = currentPage * ITEMS_PER_PAGE;
+  const indexOfFirstItem = indexOfLastItem - ITEMS_PER_PAGE;
+  const currentProducts = products.slice(indexOfFirstItem, indexOfLastItem);
+
+  const totalPages = Math.ceil(products.length / ITEMS_PER_PAGE);
+
+  const handlePageChange = (pageNumber: number) => {
+    if (pageNumber >= 1 && pageNumber <= totalPages) {
+      setCurrentPage(pageNumber);
+    }
+  };
 
   return (
-    <>
-      <div className="flex items-center flex-col flex-grow pt-10">
-        <div className="px-5">
-          <h1 className="text-center">
-            <span className="block text-2xl mb-2">Welcome to</span>
-            <span className="block text-4xl font-bold">Scaffold-OP 🏗🔴 </span>
-          </h1>
-          <div className="flex justify-center items-center space-x-2">
-            <p className="my-2 font-medium">Connected Address:</p>
-            <Address address={connectedAddress} />
-          </div>
-          <p className="text-center text-lg">
-            Get started by editing{" "}
-            <code className="italic bg-base-300 text-base font-bold max-w-full break-words break-all inline-block">
-              packages/nextjs/app/page.tsx
-            </code>
-          </p>
-          <p className="text-center text-lg">
-            Edit your smart contract{" "}
-            <code className="italic bg-base-300 text-base font-bold max-w-full break-words break-all inline-block">
-              YourContract.sol
-            </code>{" "}
-            in{" "}
-            <code className="italic bg-base-300 text-base font-bold max-w-full break-words break-all inline-block">
-              packages/hardhat/contracts
-            </code>
-          </p>
+    <main className="min-h-screen">
+      <div className="w-full mx-auto px-4 md:px-6">
+        <div className="flex justify-end py-5 md:py-5 space-x-6">
+          <Search placeholder="Search Artwork" className="w-[610px]" />
+          <Sort />
         </div>
-
-        <div className="flex-grow bg-base-300 w-full mt-16 px-8 py-12">
-          <div className="flex justify-center items-center gap-12 flex-col sm:flex-row">
-            <div className="flex flex-col bg-base-100 px-10 py-10 text-center items-center max-w-xs rounded-3xl">
-              <BugAntIcon className="h-8 w-8 fill-secondary" />
-              <p>
-                Tinker with your smart contract using the{" "}
-                <Link href="/debug" passHref className="link">
-                  Debug Contracts
-                </Link>{" "}
-                tab.
-              </p>
+        <div className="flex flex-col md:flex-row items-start">
+          <Filter />
+          {/* Featured */}
+          <div className="flex-1">
+            <h1 className="font-milonga text-5xl my-8">Featured</h1>
+            <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-x-5 gap-y-10">
+              {currentProducts.map(product => (
+                <ProductCard
+                  key={product.artName}
+                  href={`/${product.artName}`}
+                  imgSrc={product.imgSrc}
+                  imgAlt={product.imgAlt}
+                  artist={product.artistName}
+                  title={product.artName}
+                  price={product.amount}
+                  tags={product.tags}
+                  isAI={true}
+                  isFavourite={false}
+                />
+              ))}
             </div>
-            <div className="flex flex-col bg-base-100 px-10 py-10 text-center items-center max-w-xs rounded-3xl">
-              <MagnifyingGlassIcon className="h-8 w-8 fill-secondary" />
-              <p>
-                Explore your local transactions with the{" "}
-                <Link href="/blockexplorer" passHref className="link">
-                  Block Explorer
-                </Link>{" "}
-                tab.
-              </p>
-            </div>
+            <Pagination currentPage={currentPage} totalPages={totalPages} onPageChange={handlePageChange} />
           </div>
+        </div>
+        {/* Recommended Section */}
+        <div className="flex-1 ml-52">
+          <h1 className="font-milonga text-5xl my-8">Recommended</h1>
+          <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-x-5 gap-y-10">
+            {currentProducts.map(product => (
+              <ProductCard
+                key={product.artName}
+                href={`/${product.artName}`}
+                imgSrc={product.imgSrc}
+                imgAlt={product.imgAlt}
+                artist={product.artistName}
+                title={product.artName}
+                price={product.amount}
+                tags={product.tags}
+                isAI={true}
+                isFavourite={false}
+              />
+            ))}
+          </div>
+          <Pagination currentPage={currentPage} totalPages={totalPages} onPageChange={handlePageChange} />
         </div>
       </div>
-    </>
+    </main>
   );
-};
-
-export default Home;
+}

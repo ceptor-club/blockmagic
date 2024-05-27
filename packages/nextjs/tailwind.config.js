@@ -75,6 +75,10 @@ module.exports = {
   },
   theme: {
     extend: {
+      fontFamily: {
+        oswald: ["Oswald", "sans-serif"],
+        milonga: ["Milonga", "cursive"],
+      },
       boxShadow: {
         center: "0 0 12px -2px rgb(0 0 0 / 0.05)",
       },

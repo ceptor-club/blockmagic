@@ -1,6 +1,6 @@
+import { ScaffoldEthAppWithProviders } from "../components/ScaffoldEthAppWithProviders";
 import "@rainbow-me/rainbowkit/styles.css";
 import { Metadata } from "next";
-import { ScaffoldEthAppWithProviders } from "~~/components/ScaffoldEthAppWithProviders";
 import { ThemeProvider } from "~~/components/ThemeProvider";
 import "~~/styles/globals.css";
 
@@ -9,9 +9,9 @@ const baseUrl = process.env.VERCEL_URL
   : `http://localhost:${process.env.PORT || 3000}`;
 const imageUrl = `${baseUrl}/thumbnail.jpg`;
 
-const title = "Scaffold-OP App";
-const titleTemplate = "%s | Scaffold-OP";
-const description = "Built with 🏗 Scaffold-OP";
+const title = "Ceptor Artist Market Place";
+const titleTemplate = "%s | Ceptor Artist";
+const description = "Get your art in front of million users";
 
 export const metadata: Metadata = {
   metadataBase: new URL(baseUrl),

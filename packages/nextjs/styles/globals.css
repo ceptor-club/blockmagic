@@ -1,6 +1,8 @@
 @import "tailwindcss/base";
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
+@import "@fontsource/oswald";
+@import "@fontsource/milonga";
 
 :root,
 [data-theme] {
@@ -9,6 +11,7 @@
 
 body {
   min-height: 100vh;
+  @apply font-oswald;
 }
 
 h1,
