@@ -15,6 +15,8 @@ const products = [
     tags: ["Open for Commissions", "AI Generated", "Fantasy", "Wizard", "Dungeons & Dragons"],
     imgSrc: "/ceptor.png",
     imgAlt: "A vibrant floral artwork by Takashi Murakami",
+    description:
+      "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Exercitationem cumque autem mollitia qui, commodi libero.",
   },
   {
     artistName: "Beeple",
@@ -23,6 +25,8 @@ const products = [
     tags: ["Open for Commissions", "AI Generated", "Fantasy", "Wizard", "Dungeons & Dragons"],
     imgSrc: "/ceptor.png",
     imgAlt: "A digital collage artwork by Beeple",
+    description:
+      "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Exercitationem cumque autem mollitia qui, commodi libero.",
   },
   {
     artistName: "Banksy",
@@ -31,6 +35,8 @@ const products = [
     tags: ["Open for Commissions", "AI Generated", "Fantasy", "Wizard", "Dungeons & Dragons"],
     imgSrc: "/ceptor.png",
     imgAlt: "A street art piece of a girl releasing a heart-shaped balloon by Banksy",
+    description:
+      "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Exercitationem cumque autem mollitia qui, commodi libero.",
   },
   {
     artistName: "Yayoi Kusama",
@@ -39,6 +45,8 @@ const products = [
     tags: ["Open for Commissions", "AI Generated", "Fantasy", "Wizard", "Dungeons & Dragons"],
     imgSrc: "/ceptor.png",
     imgAlt: "An abstract artwork with polka dots by Yayoi Kusama",
+    description:
+      "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Exercitationem cumque autem mollitia qui, commodi libero.",
   },
   {
     artistName: "Andy Warhol",
@@ -47,6 +55,8 @@ const products = [
     tags: ["Open for Commissions", "AI Generated", "Fantasy", "Wizard", "Dungeons & Dragons"],
     imgSrc: "/ceptor.png",
     imgAlt: "A pop art portrait of Marilyn Monroe by Andy Warhol",
+    description:
+      "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Exercitationem cumque autem mollitia qui, commodi libero.",
   },
   {
     artistName: "Andy Warhol",
@@ -55,6 +65,8 @@ const products = [
     tags: ["Open for Commissions", "AI Generated", "Fantasy", "Wizard", "Dungeons & Dragons"],
     imgSrc: "/ceptor.png",
     imgAlt: "A pop art portrait of Marilyn Monroe by Andy Warhol",
+    description:
+      "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Exercitationem cumque autem mollitia qui, commodi libero.",
   },
   {
     artistName: "Yayoi Kusama",
@@ -63,6 +75,8 @@ const products = [
     tags: ["Open for Commissions", "AI Generated", "Fantasy", "Wizard", "Dungeons & Dragons"],
     imgSrc: "/ceptor.png",
     imgAlt: "An abstract artwork with polka dots by Yayoi Kusama",
+    description:
+      "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Exercitationem cumque autem mollitia qui, commodi libero.",
   },
   {
     artistName: "Andy Warhol",
@@ -71,6 +85,8 @@ const products = [
     tags: ["Open for Commissions", "AI Generated", "Fantasy", "Wizard", "Dungeons & Dragons"],
     imgSrc: "/ceptor.png",
     imgAlt: "A pop art portrait of Marilyn Monroe by Andy Warhol",
+    description:
+      "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Exercitationem cumque autem mollitia qui, commodi libero.",
   },
   {
     artistName: "Andy Warhol",
@@ -79,6 +95,8 @@ const products = [
     tags: ["Open for Commissions", "AI Generated", "Fantasy", "Wizard", "Dungeons & Dragons"],
     imgSrc: "/ceptor.png",
     imgAlt: "A pop art portrait of Marilyn Monroe by Andy Warhol",
+    description:
+      "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Exercitationem cumque autem mollitia qui, commodi libero.",
   },
 ];
 
@@ -107,6 +125,7 @@ export default function Home() {
           <Sort />
         </div>
         <div className="flex flex-col md:flex-row items-start">
+          {/* sidebar on desktop */}
           <div className="hidden md:block">
             <Filter />
           </div>

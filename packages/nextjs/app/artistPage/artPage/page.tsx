@@ -2,11 +2,10 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import { Heart } from "lucide-react";
 import Artist from "~~/components/assets/artist.jpg";
 import Pagination from "~~/components/layout/Pagination";
+import ProductCard from "~~/components/ui/artpageProductCard";
 import { Button } from "~~/components/ui/button";
-import ProductCard from "~~/components/ui/product-card";
 
 const products = [
   {
@@ -16,6 +15,8 @@ const products = [
     tags: ["Open for Commissions", "AI Generated", "Fantasy", "Wizard", "Dungeons & Dragons"],
     imgSrc: "/ceptor.png",
     imgAlt: "A vibrant floral artwork by Takashi Murakami",
+    description:
+      "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Exercitationem cumque autem mollitia qui, commodi libero.",
   },
   {
     artistName: "Beeple",
@@ -24,6 +25,8 @@ const products = [
     tags: ["Open for Commissions", "AI Generated", "Fantasy", "Wizard", "Dungeons & Dragons"],
     imgSrc: "/ceptor.png",
     imgAlt: "A digital collage artwork by Beeple",
+    description:
+      "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Exercitationem cumque autem mollitia qui, commodi libero.",
   },
   {
     artistName: "Banksy",
@@ -32,6 +35,8 @@ const products = [
     tags: ["Open for Commissions", "AI Generated", "Fantasy", "Wizard", "Dungeons & Dragons"],
     imgSrc: "/ceptor.png",
     imgAlt: "A street art piece of a girl releasing a heart-shaped balloon by Banksy",
+    description:
+      "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Exercitationem cumque autem mollitia qui, commodi libero.",
   },
   {
     artistName: "Yayoi Kusama",
@@ -40,6 +45,8 @@ const products = [
     tags: ["Open for Commissions", "AI Generated", "Fantasy", "Wizard", "Dungeons & Dragons"],
     imgSrc: "/ceptor.png",
     imgAlt: "An abstract artwork with polka dots by Yayoi Kusama",
+    description:
+      "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Exercitationem cumque autem mollitia qui, commodi libero.",
   },
   {
     artistName: "Andy Warhol",
@@ -48,6 +55,8 @@ const products = [
     tags: ["Open for Commissions", "AI Generated", "Fantasy", "Wizard", "Dungeons & Dragons"],
     imgSrc: "/ceptor.png",
     imgAlt: "A pop art portrait of Marilyn Monroe by Andy Warhol",
+    description:
+      "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Exercitationem cumque autem mollitia qui, commodi libero.",
   },
   {
     artistName: "Andy Warhol",
@@ -56,6 +65,8 @@ const products = [
     tags: ["Open for Commissions", "AI Generated", "Fantasy", "Wizard", "Dungeons & Dragons"],
     imgSrc: "/ceptor.png",
     imgAlt: "A pop art portrait of Marilyn Monroe by Andy Warhol",
+    description:
+      "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Exercitationem cumque autem mollitia qui, commodi libero.",
   },
   {
     artistName: "Yayoi Kusama",
@@ -64,6 +75,8 @@ const products = [
     tags: ["Open for Commissions", "AI Generated", "Fantasy", "Wizard", "Dungeons & Dragons"],
     imgSrc: "/ceptor.png",
     imgAlt: "An abstract artwork with polka dots by Yayoi Kusama",
+    description:
+      "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Exercitationem cumque autem mollitia qui, commodi libero.",
   },
   {
     artistName: "Andy Warhol",
@@ -72,6 +85,8 @@ const products = [
     tags: ["Open for Commissions", "AI Generated", "Fantasy", "Wizard", "Dungeons & Dragons"],
     imgSrc: "/ceptor.png",
     imgAlt: "A pop art portrait of Marilyn Monroe by Andy Warhol",
+    description:
+      "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Exercitationem cumque autem mollitia qui, commodi libero.",
   },
   {
     artistName: "Andy Warhol",
@@ -80,6 +95,8 @@ const products = [
     tags: ["Open for Commissions", "AI Generated", "Fantasy", "Wizard", "Dungeons & Dragons"],
     imgSrc: "/ceptor.png",
     imgAlt: "A pop art portrait of Marilyn Monroe by Andy Warhol",
+    description:
+      "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Exercitationem cumque autem mollitia qui, commodi libero.",
   },
 ];
 
@@ -110,22 +127,30 @@ export default function Home() {
               href={`/${products[0].artName}`}
               imgSrc={products[0].imgSrc}
               imgAlt={products[0].imgAlt}
-              artist={products[0].artistName}
-              title={products[0].artName}
-              price={products[0].amount}
               tags={products[0].tags}
               isAI={true}
               isFavourite={false}
+              description={products[0].description}
             />
           </div>
           <div className="flex flex-col items-start space-y-2 md:space-y-4">
-            <h1 className="text-5xl font-bold font-milonga ml-10">Artist Name</h1>
-            <div className="ml-10 flex">
-              <Heart className="fill-white mr-2.5" />
-              <span>Follow This Artist</span>
+            <div className="relative flex">
+              <Image src={Artist} alt="artist profile picture" className="w-[86px] h-[83px]" />
+              <div className="ml-4 ">
+                <p className="text-3xl font-milonga m-0">Artist Name</p>
+                <p className="text-4xl font-oswald">Title of Artwork</p>
+              </div>
             </div>
+
             {/* transparent div for vertical margin */}
-            <div className="h-[168px]"></div>
+            <div className="h-[140px]"></div>
+
+            {/* cost of art */}
+            <div>
+              <span className="text-xs ml-10">Cost</span>
+              <p className="ml-10 m-0">{products[0].amount}</p>
+            </div>
+
             {/* button */}
             <div className="ml-10 w-[400px]">
               <Button variant="default" size={"lg"} className="w-full text-2xl">
@@ -138,7 +163,7 @@ export default function Home() {
           </div>
         </div>
         <div className="flex flex-col md:flex-row items-start">
-          {/* Featured */}
+          {/* more items */}
           <div className="flex-1">
             <h1 className="font-milonga text-4xl my-8">More by Artist Name</h1>
             <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-x-5 gap-y-10">

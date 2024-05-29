@@ -9,9 +9,9 @@ interface ProductProps {
   href: string;
   imgSrc: string;
   imgAlt: string;
-  artist: string;
-  title: string;
-  price: string;
+  artist?: string;
+  title?: string;
+  price?: string;
   description?: string;
   tags: string[];
   isAI: boolean;
@@ -22,9 +22,7 @@ const ProductCard = ({
   href,
   imgSrc,
   imgAlt,
-  artist,
-  title,
-  price,
+  description,
   tags,
   isAI,
   isFavourite: initialFavourite,
@@ -61,13 +59,8 @@ const ProductCard = ({
       {/* text display */}
       <div className="flex-1 py-4">
         <div className="flex justify-between">
-          <div>
-            <p className="font-bold tracking-tight">{artist}</p>
-            <p className="font-bold tracking-tight">{title}</p>
-          </div>
-          <div>
-            <p className="text-[#D0D0D0] text-sm">Cost</p>
-            <h4 className="font-semibold mt-2">{price}</h4>
+          <div className="w-[400px]">
+            <p className="font-bold tracking-tight">{description}</p>
           </div>
         </div>
         <div className="flex flex-wrap gap-4 mt-2">
