@@ -80,3 +80,9 @@ Implement user authentication and session management to keep track of GMs and pl
 Provide clear error messages and feedback for user actions (e.g., form submission success or failure).
 10. Documentation
 Document the usage of your components and pages for future reference and other developers.
+
+
+To automatically assign the ccId to the GM creating the campaign, you would typically have the ccId available as part of the user's session or authentication context. Assuming you have a user authentication system in place that assigns a ccId to each user upon account creation, you can retrieve this ccId from the user's session or token when they are logged in.
+
+1. Ensure that the session data actually includes the ccId when it's being set. This might involve checking your authentication flow or wherever the session data is populated.
+2. If you're using a custom User model on the backend, make sure that the ccId is included in the JWT token or session object that's being created upon user authentication.

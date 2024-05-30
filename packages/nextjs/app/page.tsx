@@ -15,7 +15,7 @@ const Home: NextPage = () => {
         <div className="px-5">
           <h1 className="text-center">
             <span className="block text-2xl mb-2">Welcome to</span>
-            <span className="block text-4xl font-bold">Scaffold-OP 🏗🔴 </span>
+            <span className="block text-4xl font-bold">D&D Campaign Scheduler 🐉🗓️</span>
           </h1>
           <div className="flex justify-center items-center space-x-2">
             <p className="my-2 font-medium">Connected Address:</p>
@@ -37,6 +37,16 @@ const Home: NextPage = () => {
               packages/hardhat/contracts
             </code>
           </p>
+        </div>
+
+        <div className="flex flex-col bg-base-100 px-10 py-10 text-center items-center max-w-xs rounded-3xl">
+          <Link href="/campaigns/createCampaign">Create a Campaign</Link>
+        </div>
+        <div className="flex flex-col bg-base-100 px-10 py-10 text-center items-center max-w-xs rounded-3xl">
+          <Link href="/worldDetails">View Worlds</Link>
+        </div>
+        <div className="flex flex-col bg-base-100 px-10 py-10 text-center items-center max-w-xs rounded-3xl">
+          <Link href="/campaignDetails">View Campaigns</Link>
         </div>
 
         <div className="flex-grow bg-base-300 w-full mt-16 px-8 py-12">

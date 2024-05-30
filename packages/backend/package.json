@@ -12,6 +12,6 @@
     "typescript": "^5.4.5"
   },
   "scripts": {
-  "start": "ts-node-dev --respawn --transpile-only src/server.ts"
-}
+    "start": "ts-node-dev --respawn --transpile-only src/server.ts"
+  }
 }

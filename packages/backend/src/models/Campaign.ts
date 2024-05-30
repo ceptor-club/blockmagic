@@ -12,6 +12,7 @@ const campaignSchema = new Schema({
   sessionZero: { type: Boolean, required: true },
   frequency: { type: String, enum: ['one_shot', 'regular_cadence', 'custom_cadence'], required: true },
   scheduledSessions: [{ type: Date }],
+  permissions: [{ type: String }],
   notifications: [{ type: Schema.Types.ObjectId, ref: 'Notification' }],
 });
 

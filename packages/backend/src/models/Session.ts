@@ -1,11 +1,13 @@
 import { Schema, model } from 'mongoose';
 
 const sessionSchema = new Schema({
-    campaignId: { type: Schema.Types.ObjectId, ref: 'Campaign', required: true },
-    externalId: { type: String, required: true, unique: true, index: true },
+  campaignId: { type: Schema.Types.ObjectId, ref: 'Campaign', required: true },
+  externalId: { type: String, required: true, unique: true, index: true },
   sessionNumber: { type: Number, required: true },
   date: { type: Date, required: true },
   description: { type: String, required: false },
+  characters: [{ type: Schema.Types.ObjectId, ref: 'Character' }],
+  permissions: [{ type: String }],
 });
 
 export const Session = model('Session', sessionSchema);

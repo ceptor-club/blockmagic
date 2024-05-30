@@ -48,10 +48,61 @@ export const deleteWorld = async (req: Request, res: Response) => {
 };
 
 export const listWorlds = async (req: Request, res: Response) => {
+  const { search, ccId, vibe, page = 1, limit = 10 } = req.query;
   try {
-    const worlds = await World.find({});
-    res.status(200).json(worlds);
+    let query: any = {};
+    if (search) {
+      query.name = { $regex: search, $options: 'i' };
+    }
+    if (ccId) {
+      query.ccId = ccId;
+    }
+    if (vibe) {
+      query.vibe = vibe;
+    }
+    const worlds = await World.find(query)
+      .skip((page - 1) * limit)
+      .limit(limit);
+    const total = await World.countDocuments(query);
+    res.status(200).json({ worlds, total, page, limit });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
+};
+
+// Example mock data for worlds
+const mockWorlds = [
+  {
+    _id: '1',
+    ccid: 'admin01'
+    name: 'Fantasy Land',
+    description: 'A world full of magic and dragons.',
+    vibe: 'chill',
+    externalId: 'world-1',
+    // ... other properties ...
+  },
+  {
+    _id: '42',
+    ccid: 'admin01'
+    name: 'Techno Land',
+    description: 'A world full of technology and gadgets.',
+    vibe: 'intense',
+    externalId: 'world-2',
+    // ... other properties ...
+  },
+  {
+    _id: '70',
+    ccid: 'admin01'
+    name: 'Dimension Travlers Land',
+    description: 'A world full of things unimaginable.',
+    vibe: 'unknown',
+    externalId: 'world-3',
+    // ... other properties ...
+  },
+  // ... more mock worlds ...
+];
+
+// Serve mock data in your API route
+export const listWorlds = async (req: Request, res: Response) => {
+  res.status(200).json(mockWorlds);
 };

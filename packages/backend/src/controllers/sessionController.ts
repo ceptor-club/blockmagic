@@ -55,3 +55,15 @@ export const listSessions = async (req: Request, res: Response) => {
     res.status(500).json({ message: error.message });
   }
 };
+
+export const getSessionDetails = async (req: Request, res: Response) => {
+  try {
+    const session = await Session.findOne({ externalId: req.params.externalId }).populate('characters');
+    if (!session) {
+      return res.status(404).json({ message: 'Session not found' });
+    }
+    res.status(200).json(session);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
